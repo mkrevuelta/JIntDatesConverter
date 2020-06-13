@@ -1,3 +1,12 @@
+/*
+    DatesConverter.java
+
+    Copyright (c) 2020, Martin Knoblauch Revuelta
+    See accompanying LICENSE
+
+    https://github.com/mkrevuelta/JavaIntDatesConverter
+*/
+
 package com.github.mkrevuelta.datesconverter;
 
 import java.util.regex.Matcher;
