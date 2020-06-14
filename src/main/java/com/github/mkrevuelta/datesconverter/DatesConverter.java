@@ -20,7 +20,7 @@ public abstract class DatesConverter
         public int month; // { 1 ... 12 }
         public int day;   // { 1 ... 31 }
 
-        static DateOnly fromYearMonthDay (
+        public static DateOnly fromYearMonthDay (
                 int year,
                 int month,
                 int day)
@@ -32,7 +32,7 @@ public abstract class DatesConverter
             return date;
         }
 
-        static DateOnly fromDayMonthYear (
+        public static DateOnly fromDayMonthYear (
                 int day,
                 int month,
                 int year)
@@ -42,6 +42,22 @@ public abstract class DatesConverter
             date.month = month;
             date.day = day;
             return date;
+        }
+        
+        public boolean isValid ()
+        {
+            if (    year < startingYear ||
+                    month < 1 || month > 12 ||
+                    day < 0)
+                return false;
+            
+            if (    day >= 1 &&
+                    day <= monthDays[month-1])
+                return true;
+            
+            return month == 2 && day == 29 &&
+                   ( isLeapYear (year) ||
+                     year == startingYear ); // Embrace Lotus123 bug
         }
     }
 
@@ -150,7 +166,7 @@ public abstract class DatesConverter
         int tcYear = day / 366;
         
         if (tcYear < 399 && day >= tetraCenturyOffsets[tcYear+1])
-        	tcYear ++;
+            tcYear ++;
 
         year += tcYear;
         day -= tetraCenturyOffsets[tcYear];

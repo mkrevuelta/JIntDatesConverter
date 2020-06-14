@@ -28,7 +28,28 @@ public class TestDates
         // Negative Excel date to default
         Assert.assertEquals ((Integer)42, getExcelDate ("1000-01-01", 42));
 
-        // Check some special dates
+        // Check isValid() against a few corner cases
+
+        int[][] invalidDates =
+        {
+            { -1, 1, 1 },
+            { 0, 1, 1 },
+            { 1899, 12, 31 },
+            { 1900, 1, 0 },
+            { 1900, 0, 1 },
+            { 1900, 1, -1 },
+            { 1900, -1, 1 },
+            { 1900, 13, 1 }
+        };
+        
+        for (int i=0; i<invalidDates.length; i++)
+            Assert.assertFalse (DatesConverter.DateOnly.
+                    fromYearMonthDay(
+                            invalidDates[i][0],
+                            invalidDates[i][1],
+                            invalidDates[i][2] ).isValid());
+
+        // Check translation of some special dates
 
         String[][] datePairs =
         {
@@ -102,6 +123,16 @@ public class TestDates
                                     (year%4==0 && year%100!=0) ? 29 : 28) :
                         month<=7 ? (month%2==0 ? 30 : 31) :
                                    (month%2==0 ? 31 : 30);
+
+                Assert.assertFalse (DatesConverter.DateOnly.
+                        fromYearMonthDay(year, month, 0).isValid());
+                Assert.assertFalse (DatesConverter.DateOnly.
+                        fromYearMonthDay(year, month, monthDays+1).isValid());
+
+                Assert.assertTrue (DatesConverter.DateOnly.
+                        fromYearMonthDay(year, month, 1).isValid());
+                Assert.assertTrue (DatesConverter.DateOnly.
+                        fromYearMonthDay(year, month, monthDays).isValid());
 
                 for (int day=1; day<=monthDays; day++, excelDay++)
                 {
