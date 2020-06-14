@@ -147,21 +147,13 @@ public abstract class DatesConverter
         int year = (day / tetraCenturyDays) * 400;
         day %= tetraCenturyDays;
 
-        int low = 0, high = 399, med;
-        for (;;)
-        {
-            med = (low + high) / 2;
+        int tcYear = day / 366;
+        
+        if (tcYear < 399 && day >= tetraCenturyOffsets[tcYear+1])
+        	tcYear ++;
 
-            if (day < tetraCenturyOffsets[med])
-                high = med - 1;
-            else if (med < 399 && day >= tetraCenturyOffsets[med+1])
-                low = med + 1;
-            else
-                break;
-        }
-
-        year += med;
-        day -= tetraCenturyOffsets[med];
+        year += tcYear;
+        day -= tetraCenturyOffsets[tcYear];
 
         int month = 0;
         boolean isLeap = isLeapYear (year+startingYear);
@@ -171,7 +163,9 @@ public abstract class DatesConverter
             if (isLeap)
                 day --;
 
-            while (month<11 && day >= monthOffsets[month+1])
+            month = day / 31;
+
+            if (month < 11 && day >= monthOffsets[month+1])
                 month ++;
 
             day -= monthOffsets[month];
