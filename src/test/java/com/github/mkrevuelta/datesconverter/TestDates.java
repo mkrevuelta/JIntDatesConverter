@@ -35,19 +35,42 @@ public class TestDates
             { -1, 1, 1 },
             { 0, 1, 1 },
             { 1899, 12, 31 },
-            { 1900, 1, 0 },
+            { 1900, 1, 0 },      // "Zero" date
             { 1900, 0, 1 },
             { 1900, 1, -1 },
             { 1900, -1, 1 },
-            { 1900, 13, 1 }
+            { 1900, 13, 1 },
+            { 5881510, 2, 29 },
+            { 5881510, 7, 11 },  // The day after Integer.MAXVALUE
+            { 5881510, 7, 32 },
+            { 5881510, 8, 1 },
+            { 5881511, 1, 1 }
         };
-        
+
         for (int i=0; i<invalidDates.length; i++)
-            Assert.assertFalse (DatesConverter.DateOnly.
-                    fromYearMonthDay(
+            checkYearMonthDayIsValidDate (
                             invalidDates[i][0],
                             invalidDates[i][1],
-                            invalidDates[i][2] ).isValid());
+                            invalidDates[i][2],
+                            false);
+
+        int[][] validDates =
+        {
+            { 5881508, 2, 29 },
+            { 5881509, 12, 31 },
+            { 5881510, 1, 1 },
+            { 5881510, 2, 28 },
+            { 5881510, 6, 30 },
+            { 5881510, 7, 1 },
+            { 5881510, 7, 10 }   // Day Integer.MAXVALUE
+        };
+
+        for (int i=0; i<validDates.length; i++)
+            checkYearMonthDayIsValidDate (
+                            validDates[i][0],
+                            validDates[i][1],
+                            validDates[i][2],
+                            true);
 
         // Check translation of some special dates
 
@@ -124,15 +147,11 @@ public class TestDates
                         month<=7 ? (month%2==0 ? 30 : 31) :
                                    (month%2==0 ? 31 : 30);
 
-                Assert.assertFalse (DatesConverter.DateOnly.
-                        fromYearMonthDay(year, month, 0).isValid());
-                Assert.assertFalse (DatesConverter.DateOnly.
-                        fromYearMonthDay(year, month, monthDays+1).isValid());
+                checkYearMonthDayIsValidDate (year, month, 0, false);
+                checkYearMonthDayIsValidDate (year, month, monthDays+1, false);
 
-                Assert.assertTrue (DatesConverter.DateOnly.
-                        fromYearMonthDay(year, month, 1).isValid());
-                Assert.assertTrue (DatesConverter.DateOnly.
-                        fromYearMonthDay(year, month, monthDays).isValid());
+                checkYearMonthDayIsValidDate (year, month, 1, true);
+                checkYearMonthDayIsValidDate (year, month, monthDays, true);
 
                 for (int day=1; day<=monthDays; day++, excelDay++)
                 {
@@ -201,6 +220,24 @@ public class TestDates
     {
         return DatesConverter.getString_YYYY_dash_MM_dash_DD_FromExcelDay (
                 excelDate);
+    }
+    
+    private static void checkYearMonthDayIsValidDate (
+            int year,
+            int month,
+            int day,
+            boolean expectedResult)
+    {
+        boolean obtainedResult = DatesConverter.DateOnly.
+                fromYearMonthDay(
+                        year,
+                        month,
+                        day ).isValid();
+
+        if (obtainedResult != expectedResult)
+            Assert.fail ("Year " + year + ", month " + month + ", day " + day +
+                    ", is reported as " + (obtainedResult?"valid":"invalid") +
+                    " by DatesConverter.DateOnly.isValid()");
     }
 }
 

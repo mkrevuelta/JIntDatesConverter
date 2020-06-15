@@ -12,8 +12,60 @@ package com.github.mkrevuelta.datesconverter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * This class translates calendar dates to and from Excel dates
+ * &mdash;number of days since the start of 1900 (*)&mdash; using plain-old,
+ * lightning-fast, integer arithmetics.
+ * <p>
+ * It uses also a couple of lookup tables which are initialized
+ * statically.
+ * <p>
+ * (*): Notes about Excel dates:
+ * <ul>
+ * <li> <b>1900-01-00</b> is translated as <b>0</b>. Though, it is
+ *      considered invalid by
+ *      {@link DateOnly#isValid() DateOnly.isValid()}.
+ * <li> <b>1900-01-01</b> is day <b>1</b>.
+ * <li> <b>1900-02-29</b>, though not a real day, is considered valid
+ *      for backward compatibility with Lotus123. It is translated as
+ *      <b>60</b>, Wednesday.
+ * <li> <b>1900-03-01</b> is day <b>61</b>. It was a Thursday.
+ * <li> <b>9999-12-31</b> is day <b>2958465</b>. This is the maximum
+ *      date for Excel. Though, this library considers valid and
+ *      translates correctly all following dates up to...
+ * <li> <b>5881510-07-10</b>, which is day Integer.MAX_VALUE. That is,
+ *      2147483647. A pretty nice Sunday, I hope.
+ * </ul>
+ * 
+ * @author Mart&iacute;n Knoblauch Revuelta
+ * @version 1
+ */
 public abstract class DatesConverter
 {
+    /**
+     * This class represents a date and only a date &mdash;no hours,
+     * minutes, seconds etc.&mdash;.
+     * <p>
+     * I felt tempted to provide it with all the bells and whistles
+     * (Comparable interface, toString() overload...). Then I
+     * considered using a smaller type for month and day, just in
+     * case a lot of objects are stored. That would raise the
+     * problem of narrowing casts... But this is all beyond the
+     * purpose of this class and, in fact, it is not necessary
+     * at all.
+     * <p>
+     * If you want to store a lot of dates, or use them as keys in
+     * a map, just use the Excel date stored in a plain old
+     * <b><code>int</code></b>. This whole library is here to
+     * provide a fast translation of that to/from calendar date.
+     * <p>
+     * Note that there is no constructor. Two "factory" methods are
+     * provided instead. Their names are intended to reduce the risk
+     * of messing the order of the parameters.
+     * 
+     * @author Mart&iacute;n Knoblauch Revuelta
+     * @version 1
+     */
     public static class DateOnly
     {
         public int year;  // { 1900 ... }
@@ -46,11 +98,16 @@ public abstract class DatesConverter
         
         public boolean isValid ()
         {
-            if (    year < startingYear ||
+            if (    year < startingYear || year > maxintYear ||
                     month < 1 || month > 12 ||
                     day < 0)
                 return false;
-            
+
+            if (    year == maxintYear &&
+                    ( month > maxintMonth ||
+                      ( month == maxintMonth && day > maxintDay)))
+                return false;
+
             if (    day >= 1 &&
                     day <= monthDays[month-1])
                 return true;
