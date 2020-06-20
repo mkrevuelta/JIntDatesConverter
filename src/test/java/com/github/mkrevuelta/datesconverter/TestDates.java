@@ -135,6 +135,11 @@ public class TestDates
                     datePairs[i][0],
                     fromExcelDate (Integer.parseInt(datePairs[i][1])));
 
+        // Slightly invalid dates
+
+        Assert.assertEquals ((Integer)43892, getExcelDate ("2020-02-31", null));
+        Assert.assertEquals ((Integer)43892, getExcelDate ("2020-03-02", null));
+
         // Check every valid date in Excel dates range
 
         for (int excelDay=1, year=1900; year<=9999; year++)
