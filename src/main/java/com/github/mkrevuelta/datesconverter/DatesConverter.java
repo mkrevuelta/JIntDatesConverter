@@ -38,6 +38,10 @@ import java.util.regex.Pattern;
  *      is, 2147483647. A pretty nice Sunday, I hope, for whoever
  *      that walks the Earth by then.
  * </ul>
+ * <p>
+ * See the <a target="_blank"
+ * href="https://github.com/mkrevuelta/JavaIntDatesConverter">project
+ * page</a> in GitHub
  * 
  * @author Mart&iacute;n Knoblauch Revuelta
  * @version 1

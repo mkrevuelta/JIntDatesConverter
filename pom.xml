@@ -57,6 +57,7 @@
 				<configuration>
 					<show>public</show>
 					<nohelp>true</nohelp>
+					<notimestamp>true</notimestamp>
 				</configuration>
 			</plugin>
 		</plugins>
