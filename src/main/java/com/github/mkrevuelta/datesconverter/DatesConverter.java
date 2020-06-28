@@ -13,7 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * This class translates calendar dates to and from Excel dates
+ * This class translates calendar dates to and from Excel&reg; dates
  * &mdash;number of days since the start of year 1900 (*)&mdash;
  * using plain-old, lightning-fast, integer arithmetics.
  * <p>
@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
  * initialized statically. They are never modified. Thus, the
  * library is safe for multithread use.
  * <p>
- * (*): Notes about Excel dates:
+ * (*): Notes about Excel&reg; dates:
  * <ul>
  * <li> <b>1900-01-00</b> is translated as <b>0</b>. Though, it is
  *      considered invalid by
@@ -32,8 +32,8 @@ import java.util.regex.Pattern;
  *      translated as <b>60</b>, Wednesday.
  * <li> <b>1900-03-01</b> is day <b>61</b>. It was a Thursday.
  * <li> <b>9999-12-31</b> is day <b>2958465</b>. This is the maximum
- *      date for Excel. Though, this library considers valid and
- *      translates correctly all following dates up to...
+ *      date for Excel&reg;. Though, this library considers valid
+ *      and translates correctly all following dates up to...
  * <li> <b>5881510-07-10</b>, which is day Integer.MAX_VALUE. That
  *      is, 2147483647. A pretty nice Sunday, I hope, for whoever
  *      that walks the Earth by then.
@@ -64,7 +64,7 @@ public abstract class DatesConverter
      * at all.
      * <p>
      * If you want to store a lot of dates, or use them as keys in
-     * a map, just use the Excel date stored in a plain old
+     * a map, just use the Excel&reg; date stored in a plain old
      * <b><code>int</code></b>. This whole library is here to
      * provide a fast translation of that to/from calendar date.
      * <p>
@@ -104,7 +104,7 @@ public abstract class DatesConverter
 
         /**
          * Constructs an object initializing it with the default
-         * date 1900-01-00, which is the Excel day number 0.
+         * date 1900-01-00, which is the Excel&reg; day number 0.
          */
         public DateOnly ()
         {
@@ -226,7 +226,7 @@ public abstract class DatesConverter
 
     /**
      * This function translates a calendar date (year, month,
-     * day) from a {@link DateOnly DateOnly} object to Excel
+     * day) from a {@link DateOnly DateOnly} object to Excel&reg;
      * day number.
      * <p>
      * This translation is slightly tolerant with some forms of
@@ -238,8 +238,8 @@ public abstract class DatesConverter
      * 
      * @param date the {@link DateOnly DateOnly} object to be
      *             translated
-     * @return the resulting Excel day number if the input date
-     *         is valid, -1 otherwise
+     * @return the resulting Excel&reg; day number if the input
+     *         date is valid, -1 otherwise
      */
     public static int getExcelDayFromDate (DateOnly date)
     {
@@ -287,12 +287,12 @@ public abstract class DatesConverter
      * (year, month, day) in the form of a
      * {@link DateOnly DateOnly} object.
      * <p>
-     * The Excel day 0 is translated as 1900-01-00, which is not
-     * strictly valid.
+     * The Excel&reg; day 0 is translated as 1900-01-00, which is
+     * not strictly valid.
      * <p>
      * Negative day numbers are also translated as 1900-01-00.
      * 
-     * @param excelDay Excel day number
+     * @param excelDay Excel&reg; day number
      * @return corresponding calendar date as a
      *         {@link DateOnly DateOnly} object if the input is
      *         greater than 0, the default
@@ -367,8 +367,8 @@ public abstract class DatesConverter
      * @param date date string in <i>yyyy-MM-dd</i> format
      * @param defaultValue special value to be returned if the
      *                     parsing fails or the date is invalid
-     * @return the resulting Excel day number if the input is a
-     *         valid date, {@code defaultValue} otherwise
+     * @return the resulting Excel&reg; day number if the input is
+     *         a valid date, {@code defaultValue} otherwise
      * @see #getExcelDayFromDate
      */
     public static Integer
@@ -405,7 +405,7 @@ public abstract class DatesConverter
      * <i>yyyy-MM-dd</i> instead of {@link DateOnly DateOnly}
      * objects.
      *
-     * @param excelDay Excel day number
+     * @param excelDay Excel&reg; day number
      * @return corresponding calendar date string in
      *         <i>yyyy-MM-dd</i> format if the input is greater
      *         than 0, "1900-01-00" otherwise.
