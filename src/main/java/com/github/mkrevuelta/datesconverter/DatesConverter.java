@@ -4,7 +4,7 @@
     Copyright (c) 2020, Martin Knoblauch Revuelta
     See accompanying LICENSE
 
-    https://github.com/mkrevuelta/JavaIntDatesConverter
+    https://github.com/mkrevuelta/JIntDatesConverter
 */
 
 package com.github.mkrevuelta.datesconverter;
@@ -40,7 +40,7 @@ import java.util.regex.Pattern;
  * </ul>
  * <p>
  * See the <a target="_blank"
- * href="https://github.com/mkrevuelta/JavaIntDatesConverter">project
+ * href="https://github.com/mkrevuelta/JIntDatesConverter">project
  * page</a> in GitHub
  * 
  * @author Mart&iacute;n Knoblauch Revuelta

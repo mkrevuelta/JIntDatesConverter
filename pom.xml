@@ -10,7 +10,7 @@
 
 	<name>datesconverter</name>
 	<description>Dates converter to/from int (Excel) using plain old, lightning fast, integer arithmetic</description>
-	<url>https://github.com/mkrevuelta/JavaIntDatesConverter</url>
+	<url>https://github.com/mkrevuelta/JIntDatesConverter</url>
 
 	<licenses>
 		<license>
@@ -29,9 +29,9 @@
 	</developers>
 
 	<scm>
-		<connection>scm:git:git://github.com/mkrevuelta/JavaIntDatesConverter.git</connection>
-		<developerConnection>scm:git:ssh://github.com:mkrevuelta/JavaIntDatesConverter.git</developerConnection>
-		<url>https://github.com/mkrevuelta/JavaIntDatesConverter/tree/master</url>
+		<connection>scm:git:git://github.com/mkrevuelta/JIntDatesConverter.git</connection>
+		<developerConnection>scm:git:ssh://github.com:mkrevuelta/JIntDatesConverter.git</developerConnection>
+		<url>https://github.com/mkrevuelta/JIntDatesConverter/tree/master</url>
 	</scm>
 
 	<dependencies>

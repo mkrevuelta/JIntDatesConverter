@@ -4,7 +4,7 @@
     Copyright (c) 2020, Martin Knoblauch Revuelta
     See accompanying LICENSE
 
-    https://github.com/mkrevuelta/JavaIntDatesConverter
+    https://github.com/mkrevuelta/JIntDatesConverter
 */
 
 package com.github.mkrevuelta.datesconverter;

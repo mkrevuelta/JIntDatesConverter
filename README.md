@@ -1,4 +1,4 @@
-# JavaIntDatesConverter
+# JIntDatesConverter
 Convert calendar date to/from int (Excel&reg;) date using plain old, lightning fast, integer arithmetics.
 
 # Table of Contents
@@ -76,5 +76,5 @@ Since Java 8 we have the `java.time` package. It includes the class `LocalDate`,
 ## More details
 
 See:
-* The javadoc [documentation](https://mkrevuelta.github.io/JavaIntDatesConverter/docs/index.html).
-* The [project page](https://github.com/mkrevuelta/JavaIntDatesConverter) in GitHub.
+* The javadoc [documentation](https://mkrevuelta.github.io/JIntDatesConverter/docs/index.html).
+* The [project page](https://github.com/mkrevuelta/JIntDatesConverter) in GitHub.
