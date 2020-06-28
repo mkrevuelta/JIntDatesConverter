@@ -7,7 +7,7 @@
     https://github.com/mkrevuelta/JIntDatesConverter
 */
 
-package com.github.mkrevuelta.datesconverter;
+package com.github.mkrevuelta.JIntDatesConverter;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

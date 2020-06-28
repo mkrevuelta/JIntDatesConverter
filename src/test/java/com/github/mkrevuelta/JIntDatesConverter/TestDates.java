@@ -7,7 +7,7 @@
     https://github.com/mkrevuelta/JIntDatesConverter
 */
 
-package com.github.mkrevuelta.datesconverter;
+package com.github.mkrevuelta.JIntDatesConverter;
 
 import org.junit.Test;
 import org.junit.Assert;
