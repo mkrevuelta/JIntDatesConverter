@@ -2,11 +2,11 @@
 Convert calendar date to/from int (Excel&reg;) date using plain old, lightning fast, integer arithmetics.
 
 # Table of Contents
-1. [What is the int (Excel&reg;) date?]
-2. [Application examples]
-3. [Alternatives]
-4. [Why is this library better]
-5. [More details]
+1. [What is the int (Excel&reg;) date?](#What-is-the-int-Excel-date)
+2. [Application examples](#Application-examples)
+3. [Alternatives](#Alternatives)
+4. [Why is this library better](#Why-is-this-library-better)
+5. [More details](#More-details)
 
 ## What is the int (Excel&reg;) date?
 
