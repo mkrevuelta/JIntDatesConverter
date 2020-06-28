@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.github.mkrevuelta</groupId>
-	<artifactId>datesconverter</artifactId>
+	<artifactId>JIntDatesConverter</artifactId>
 	<version>1</version>
 	<packaging>jar</packaging>
 
-	<name>datesconverter</name>
-	<description>Dates converter to/from int (Excel) using plain old, lightning fast, integer arithmetic</description>
+	<name>JIntDatesConverter</name>
+	<description>Dates converter to/from int (Excel) date using plain old, lightning fast, integer arithmetic</description>
 	<url>https://github.com/mkrevuelta/JIntDatesConverter</url>
 
 	<licenses>
