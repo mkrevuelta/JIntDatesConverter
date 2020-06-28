@@ -1,6 +1,13 @@
 # JavaIntDatesConverter
 Convert calendar date to/from int (Excel&reg;) date using plain old, lightning fast, integer arithmetics.
 
+# Table of Contents
+1. [What is the int (Excel&reg;) date?]
+2. [Application examples]
+3. [Alternatives]
+4. [Why is this library better]
+5. [More details]
+
 ## What is the int (Excel&reg;) date?
 
 The int (Excel&reg;) date is the number of days since the beginning of 1900, with a few considerations:
@@ -12,7 +19,7 @@ The int (Excel&reg;) date is the number of days since the beginning of 1900, wit
 
 &#x2724;: Day 0 is generally used as a default date, meaning ``no date specified´´.
 
-&sext;: 1900 was **not** a leap year, but Lotus123 considered it a leap year by mistake. Microsoft&reg; Excel&reg; perpetuates that tradition for backward compatibility.
+&sext;: 1900 was **not** a leap year, but Lotus 1-2-3 considered it a leap year by mistake. Microsoft&reg; Excel&reg; [perpetuates that tradition](https://docs.microsoft.com/en-us/office/troubleshoot/excel/wrongly-assumes-1900-is-leap-year) for backward compatibility.
 
 You can play wit this conversion in Microsoft&reg; Excel&reg;:
 * Write a number in a cell, and then change the cell format to short date.
@@ -50,9 +57,24 @@ Don't worry about that, though. The world will end even sooner. [Network Time Pr
 
 October the 12<sup>th</sup>, 3000 will be day number 402053. The remainder of 402053 divided by 7 is 1. Hence, it will be <b>Sunday</b>.
 
-[//]: # (## Alternatives //--MKR TODO: Mention other ways to do the translation and explain why this library is better)
+## Alternatives
 
-## For more details, see:
+The class `java.util.Date` stores a date (*and time*) as the number of milliseconds since the beginning of 1970. It has specific methods to get and set the year month and day, but they are deprecated. Instead, you should use `java.util.Calendar`. A common practice is to use `java.text.SimpleDateFormat` to parse strings containing dates. You may need to adjunst it to the Lotus 1-2-3 bug. Also, beware of time zones, daylight savings and leap seconds!
 
+Since Java 8 we have the `java.time` package. It includes the class `LocalDate`, which stores a date (only a date!). You can use `java.time.temporal.ChronoUnit.DAYS.between()` to compute the difference between two dates in days. For the opposite translation you can use `LocalDate.plusDays()`. You may need to adjunst it to the Lotus 1-2-3 bug, but if you enjoy Java 8 or later, this is a reasonably good solution.
+
+[Apache POI](https://poi.apache.org/) has a `DateUtil` class with methods to translate between date and Excel&reg; day number as a **double**.
+
+## Why is this library better
+
+* It is easy to use correctly and difficult to use incorrectly
+* It is simple and fast because it uses integer arithmetics
+* It does ``The Rigth Thing´´ because it uses integer arithmetics and it does **not** mess with hours, minutes, seconds etc.
+* You can use it with old Java versions
+* It is small and has no dependencies (except junit, for testing)
+
+## More details
+
+See:
 * The javadoc [documentation](https://mkrevuelta.github.io/JavaIntDatesConverter/docs/index.html).
 * The [project page](https://github.com/mkrevuelta/JavaIntDatesConverter) in GitHub.
