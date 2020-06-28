@@ -46,7 +46,9 @@ Oh, but this is only valid if you consider the 32 bits unsigned! If it is treate
 
 Don't worry about that, though. The world will end even sooner. [Network Time Protocol timestamps](https://en.wikipedia.org/wiki/Network_Time_Protocol#Timestamps) will experience their 32 bit (unsigned) overflow on February the 7<sup>th</sup>, 2036. That's exactly 70 years earlier than the overflow of the unsigned Unix time because NTP timestamps are based on year 1900 instead of 1970 &mdash;but I digress.
 
-[//]: # (#### Problem 4: //--MKR TODO: week day...)
+#### Problem 4: What day of the week will it be on October the 12<sup>th</sup>, 3000
+
+October the 12<sup>th</sup>, 3000 will be day number 402053. The remainder of 402053 divided by 7 is 1. Hence, it will be <b>Sunday</b>.
 
 [//]: # (## Alternatives //--MKR TODO: Mention other ways to do the translation and explain why this library is better)
 
