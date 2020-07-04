@@ -174,8 +174,7 @@ public abstract class DatesConverter
                       ( month == maxintMonth && day > maxintDay)))
                 return false;
 
-            if (    day >= 1 &&
-                    day <= monthDays[month-1])
+            if (    day <= monthDays[month-1])
                 return true;
             
             return month == 2 && day == 29 &&
@@ -376,6 +375,9 @@ public abstract class DatesConverter
             String date,
             Integer defaultValue)
     {
+        if (date == null)
+            return defaultValue;
+
         try
         {
             Matcher matcher = patternDashes.matcher (date);

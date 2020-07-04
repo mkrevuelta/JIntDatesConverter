@@ -17,16 +17,29 @@ public class TestDates
     @Test
     public void doTest ()
     {
-        // Check default value behavior
+        // Check default date
+
+        DatesConverter.DateOnly defaultDate = new DatesConverter.DateOnly();
+        Assert.assertEquals (0, DatesConverter.getExcelDayFromDate(defaultDate));
+
+        // Check default value behavior on invalid dates translation
 
         // Default to a number
         Assert.assertEquals ((Integer)42, getExcelDate ("foo", 42));
 
         // Default to null
         Assert.assertEquals ((Integer)null, getExcelDate ("foo", null));
+        Assert.assertEquals ((Integer)null, getExcelDate (null, null));
 
         // Negative Excel date to default
         Assert.assertEquals ((Integer)42, getExcelDate ("1000-01-01", 42));
+
+        // Overflow to default
+        String overflowDate = "1900-01-1234567890123456789012345678901234567890";
+        Assert.assertEquals ((Integer)42, getExcelDate (overflowDate, 42));
+
+        // Null Integer to "zero" date
+        Assert.assertEquals ("1900-01-00", fromExcelDate (null));
 
         // Check isValid() against a few corner cases
 
@@ -40,6 +53,8 @@ public class TestDates
             { 1900, 1, -1 },
             { 1900, -1, 1 },
             { 1900, 13, 1 },
+            { 2020, 1, -1 },
+            { 2020, 1, 0 },
             { 5881510, 2, 29 },
             { 5881510, 7, 11 },  // The day after Integer.MAXVALUE
             { 5881510, 7, 32 },
@@ -233,16 +248,37 @@ public class TestDates
             int day,
             boolean expectedResult)
     {
-        boolean obtainedResult = DatesConverter.DateOnly.
-                fromYearMonthDay(
+        DatesConverter.DateOnly date =
+        DatesConverter.DateOnly.fromYearMonthDay (
                         year,
                         month,
-                        day ).isValid();
+                        day);
+
+        boolean obtainedResult = date.isValid ();
 
         if (obtainedResult != expectedResult)
             Assert.fail ("Year " + year + ", month " + month + ", day " + day +
                     ", is reported as " + (obtainedResult?"valid":"invalid") +
                     " by DatesConverter.DateOnly.isValid()");
+
+        int excelDay = DatesConverter.getExcelDayFromDate (date);
+
+        if (excelDay > 0)
+        {
+            DatesConverter.DateOnly fixedDate =
+            DatesConverter.getDateFromExcelDay (excelDay);
+            
+            obtainedResult = fixedDate.year == year &&
+                             fixedDate.month == month &&
+                             fixedDate.day == day;
+        }
+        else
+            obtainedResult = false;
+
+        if (obtainedResult != expectedResult)
+            Assert.fail ("Year " + year + ", month " + month + ", day " + day +
+                    ", is translated as day number " + excelDay +
+                    " by DatesConverter.getExcelDayFromDate()");
     }
 }
 
