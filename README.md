@@ -31,7 +31,7 @@ You can play wit this conversion in Microsoft&reg; Excel&reg;:
 
 Let's say that I was born on February the 20<sup>th</sup>, 2000 &mdash;not my real birth date, but I do feel that young!&mdash;. That was day 36576.
 
-Well, today is June the 28<sup>th</sup>, which is day 44010.
+Well, today is June the 28<sup>th</sup>, 2020, which is day 44010.
 
 44010 - 36576 = **7434**. That would be my age in days!! Easy, isn't it?
 
@@ -61,7 +61,7 @@ October the 12<sup>th</sup>, 3000 will be day number 402053. The remainder of 40
 
 The class `java.util.Date` stores a date (*and time*) as the number of milliseconds since the beginning of 1970. It has specific methods to get and set the year month and day, but they are deprecated. Instead, you should use `java.util.Calendar`. A common practice is to use `java.text.SimpleDateFormat` to parse strings containing dates. You may need to adjunst it to the Lotus 1-2-3 bug. Also, beware of time zones, daylight savings and leap seconds!
 
-Since Java 8 we have the `java.time` package. It includes the class `LocalDate`, which stores a date (only a date!). You can use `java.time.temporal.ChronoUnit.DAYS.between()` to compute the difference between two dates in days. For the opposite translation you can use `LocalDate.plusDays()`. You may need to adjunst it to the Lotus 1-2-3 bug, but if you enjoy Java 8 or later, this is a reasonably good solution.
+Since Java 8 we have the `java.time` package. It includes the class `LocalDate`, which stores a date (only a date!). You can construct a `LocalDate` with `LocalDate.of(year,month,day)` and then get the epoch day with the method `toEpochDay()`. For the opposite translation, you can construct a `LocalDate` with `LocalDate.ofEpochDay(dayNumber)` and then get the date with `getYear()`, `getMonthValue()` and `getDayOfMonth()`. Yo will need to adjust it to 1900-based day numbers, because `LocalDate` fixes its zero day in 1970. Also, you may need to adjunst it to the Lotus 1-2-3 bug. However, if you enjoy Java 8 or later, this is a reasonably good solution.
 
 [Apache POI](https://poi.apache.org/) has a `DateUtil` class with methods to translate between date and Excel&reg; day number as a **double**.
 
