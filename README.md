@@ -37,7 +37,7 @@ Well, today is June the 28<sup>th</sup>, 2020, which is day 44010.
 
 #### Problem 2: How many days do I have to buy a new suit or loose 5Kg?
 
-My friends Alice and Bob are going to get married on May, the 22<sup>nd</sup>, 2021. That's day 44366. As I said, today is day 44010...
+My friends Alice and Bob are going to get married on May, the 22<sup>nd</sup>, 2021. That's day 44338. As I said, today is day 44010...
 
 I have 44338 - 44010 = **328** days. It seems a long time. In theory I could loose those 5Kg. But if we consider Christmas, birthday parties... I'd better make plans to buy a new suit in April!
 
@@ -59,9 +59,9 @@ October the 12<sup>th</sup>, 3000 will be day number 402053. The remainder of 40
 
 ## Alternatives
 
-The class `java.util.Date` stores a date (*and time*) as the number of milliseconds since the beginning of 1970. It has specific methods to get and set the year month and day, but they are deprecated. Instead, you should use `java.util.Calendar`. A common practice is to use `java.text.SimpleDateFormat` to parse strings containing dates. You may need to adjunst it to the Lotus 1-2-3 bug. Also, beware of time zones, daylight savings and leap seconds!
+The class `java.util.Date` stores a date (*and time*) as the number of milliseconds since the beginning of 1970. It has specific methods to get and set the year month and day, but they are deprecated. Instead, you should use `java.util.Calendar`. A common practice is to use `java.text.SimpleDateFormat` to parse strings containing dates. You may need to adjust it to the Lotus 1-2-3 bug. Also, beware of time zones, daylight savings and leap seconds!
 
-Since Java 8 we have the `java.time` package. It includes the class `LocalDate`, which stores a date (only a date!). You can construct a `LocalDate` with `LocalDate.of(year,month,day)` and then get the epoch day with the method `toEpochDay()`. For the opposite translation, you can construct a `LocalDate` with `LocalDate.ofEpochDay(dayNumber)` and then get the date with `getYear()`, `getMonthValue()` and `getDayOfMonth()`. Yo will need to adjust it to 1900-based day numbers, because `LocalDate` fixes its zero day in 1970. Also, you may need to adjunst it to the Lotus 1-2-3 bug. However, if you enjoy Java 8 or later, this is a reasonably good solution.
+Since Java 8 we have the `java.time` package. It includes the class `LocalDate`, which stores a date (only a date!). You can construct a `LocalDate` with `LocalDate.of(year,month,day)` and then get the epoch day with the method `toEpochDay()`. For the opposite translation, you can construct a `LocalDate` with `LocalDate.ofEpochDay(dayNumber)` and then get the date with `getYear()`, `getMonthValue()` and `getDayOfMonth()`. Yo will need to adjust it to 1900-based day numbers, because `LocalDate` fixes its zero day in 1970. Also, you may need to adjust it to the Lotus 1-2-3 bug. However, if you enjoy Java 8 or later, this is a reasonably good solution.
 
 [Apache POI](https://poi.apache.org/) has a `DateUtil` class with methods to translate between date and Excel&reg; day number as a **double**.
 
@@ -69,7 +69,7 @@ Since Java 8 we have the `java.time` package. It includes the class `LocalDate`,
 
 * It is easy to use correctly and difficult to use incorrectly
 * It is simple and fast because it uses integer arithmetics
-* It does ``The Rigth Thing´´ because it uses integer arithmetics and it does **not** mess with hours, minutes, seconds etc.
+* It does ``The Right Thing´´ because it uses integer arithmetics and it does **not** mess with hours, minutes, seconds etc.
 * You can use it with old Java versions
 * It is small and has no dependencies (except junit, for testing)
 
