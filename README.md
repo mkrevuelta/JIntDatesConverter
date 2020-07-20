@@ -6,7 +6,7 @@ Convert calendar date to/from int (Excel&reg;) date using plain old, lightning f
 2. [Application examples](#Application-examples)
 3. [Alternatives](#Alternatives)
 4. [Why is this library better](#Why-is-this-library-better)
-5. [How to import and use JIntDatesConverter in maven projects](#How-to-import-and-use-JIntDatesConverter-in-maven-projects)
+5. [How to import and use in maven projects](#How-to-import-and-use-in-maven-projects)
 6. [More details](#More-details)
 
 ## What is the int (Excel&reg;) date?
@@ -74,7 +74,7 @@ Since Java 8 we have the `java.time` package. It includes the class `LocalDate`,
 * You can use it with old Java versions
 * It is small and has no dependencies (except junit, for testing)
 
-## How to import and use JIntDatesConverter in maven projects
+## How to import and use in maven projects
 
 Simply add this dependency to your `pom.xml`:
 
